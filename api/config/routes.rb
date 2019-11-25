@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'blogs/', to: 'blogs#index'
+  get 'blogs/:id', to: 'blogs#show'
+  post 'blogs/', to: 'blogs#create'
+  put 'blogs/:id', to: 'blogs#update'
+  delete 'blogs/:id', to: 'blogs#destroy'
 end
