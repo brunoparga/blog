@@ -6,28 +6,28 @@ class BlogsController < ApplicationController
   end
 
   def show
-    render json: blog
+    render json: @blog
   end
 
   def create
-    blog = Blog.create(blog_params)
-    render json: blog
+    @blog = Blog.create(blog_params)
+    render json: @blog
   end
 
   def update
-    blog.update(blog_params)
-    render json: blog
+    @blog.update(blog_params)
+    render json: @blog
   end
 
   def destroy
-    blog.destroy
-    render json: blog
+    @blog.destroy
+    render json: @blog
   end
 
   private
 
   def set_blog
-    blog = Blog.friendly.find(params[:id])
+    @blog = Blog.friendly.find(params[:id])
   end
 
   def blog_params
