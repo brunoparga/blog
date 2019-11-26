@@ -1,7 +1,9 @@
 /* eslint no-underscore-dangle: ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }] */
 import { applyMiddleware, compose, createStore } from 'redux';
+import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 
+import history from '../history';
 import rootReducer from '../reducer';
 
 window.__REDUX_DEVTOOLS_EXTENSION__ = window.__REDUX_DEVTOOLS_EXTENSION__
@@ -9,6 +11,7 @@ window.__REDUX_DEVTOOLS_EXTENSION__ = window.__REDUX_DEVTOOLS_EXTENSION__
 
 const middlewares = [
   applyMiddleware(thunk),
+  applyMiddleware(routerMiddleware(history)),
   window.__REDUX_DEVTOOLS_EXTENSION__(),
 ].filter((fn) => fn !== undefined && fn !== null);
 
