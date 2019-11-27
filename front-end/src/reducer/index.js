@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
 
 import blogs from './blogs';
-import history from '../history';
+import form from './form';
+import router from './router';
 
-export default combineReducers({
-  blogs,
-  router: connectRouter(history),
-});
+export default combineReducers({ blogs, form, router });
