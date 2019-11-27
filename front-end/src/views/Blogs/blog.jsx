@@ -17,6 +17,8 @@ export default function Blog({ match: { params: { slug } } }) {
     <div className="blog">
       <h3>{blog.title}</h3>
       <p>{blog.content}</p>
+      <Link to={`/edit-blog/${slug}`}>Edit this blog</Link>
+      <strong>&nbsp;|&nbsp;</strong>
       <Link to="/">Back</Link>
     </div>
   );

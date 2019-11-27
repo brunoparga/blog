@@ -19,6 +19,7 @@ export default function App() {
           <Switch>
             <Route exact path="/" component={Blogs} />
             <Route exact path="/write-blog" component={FormContainer} />
+            <Route path="/edit-blog/:slug" component={FormContainer} />
             <Route path="/:slug" component={Blog} />
           </Switch>
         </div>
