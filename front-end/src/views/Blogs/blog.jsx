@@ -7,17 +7,17 @@ import { fetchBlog } from '../../actions';
 export default function Blog({ match: { params: { slug } } }) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchBlog(slug))
-  }, [slug, dispatch])
+    dispatch(fetchBlog(slug));
+  }, [slug, dispatch]);
   const blog = useSelector((state) => state.blogs[0]);
   if (!blog) {
-    return <p>Loading...</p>
+    return <p>Loading...</p>;
   }
   return (
     <div className="blog">
       <h3>{blog.title}</h3>
       <p>{blog.content}</p>
-      <Link to='/'>Back</Link>
+      <Link to="/">Back</Link>
     </div>
   );
 }

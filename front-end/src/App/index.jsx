@@ -8,7 +8,7 @@ import store from '../store';
 import history from '../history';
 import Blogs from '../views/Blogs';
 import Blog from '../views/Blogs/blog';
-import BlogForm from '../views/Blogs/form';
+import FormContainer from '../views/Blogs/form_container';
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
           <h1>Bloggy McBlogface</h1>
           <Switch>
             <Route exact path="/" component={Blogs} />
-            <Route exact path="/write-blog" component={BlogForm} />
+            <Route exact path="/write-blog" component={FormContainer} />
             <Route path="/:slug" component={Blog} />
           </Switch>
         </div>

@@ -16,6 +16,11 @@ export default function () {
 
   return (
     <div className="blogs">
+      <p>
+        To add a new blog,&nbsp;
+        <Link to="/write-blog">click here</Link>
+        .
+      </p>
       {renderBlogs}
     </div>
   );

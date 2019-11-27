@@ -4,4 +4,8 @@ class Blog < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 4 }
   validates :content, presence: true, length: { minimum: 8 }
+
+  def to_s
+    "#{title} - #{content}"
+  end
 end

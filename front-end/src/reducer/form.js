@@ -1,3 +1,3 @@
-import { reducer } from 'redux-form'
+import { reducer } from 'redux-form';
 
-export default reducer
+export default reducer;
