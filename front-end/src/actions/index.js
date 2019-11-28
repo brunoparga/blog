@@ -1,6 +1,6 @@
-import { FETCH_BLOGS, FETCH_BLOG, CREATE_BLOG } from '../action_types';
-
-const API_URL = 'http://localhost:3000';
+import { FETCH_BLOGS, FETCH_BLOG } from '../action_types';
+import API_URL from './api_url';
+import send from './send';
 
 export const fetchBlogs = () => (dispatch) => {
   fetch(`${API_URL}/blogs`)
@@ -14,17 +14,5 @@ export const fetchBlog = (slug) => (dispatch) => {
     .then((payload) => dispatch({ type: FETCH_BLOG, payload }));
 };
 
-export const createBlog = (data, callback) => (dispatch) => {
-  fetch(`${API_URL}/blogs`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((payload) => {
-      callback();
-      dispatch({ type: CREATE_BLOG, payload });
-    });
-};
+export const createBlog = send();
+export const updateBlog = send(false);
