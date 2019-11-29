@@ -3,16 +3,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchBlogs } from '../../actions';
+import './index.css';
 
 export default function () {
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchBlogs()), [dispatch]);
   const blogs = useSelector((state) => state.blogs);
-  const renderBlogs = blogs.map((blog) => (
-    <Link to={`/${blog.slug}`} key={blog.id}>
-      <h3>{blog.title}</h3>
-    </Link>
-  ));
+  const renderBlogs = blogs.map((blog) => {
+    const time = new Date(blog.updated_at).toLocaleString('pt-BR');
+    return (
+      <div key={`${blog.id}`} className="blog-card">
+        <Link to={`/${blog.slug}`} className="blog-card__title">
+          {blog.title}
+        </Link>
+        <span className="blog-card__details">
+          Last edit:&nbsp;
+          {time}
+        </span>
+      </div>
+    );
+  });
 
   return (
     <div className="blogs">

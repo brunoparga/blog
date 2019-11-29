@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchBlog } from '../../actions';
+import './blog.css';
 
 export default function Blog({ match: { params: { slug } } }) {
   const dispatch = useDispatch();
