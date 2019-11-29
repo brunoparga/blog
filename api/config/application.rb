@@ -26,7 +26,7 @@ module BlogApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:3001'
+        origins /\Ahttp:\/\/localhost:300\d\z/
         resource '*', headers: :any, methods: %i[get post patch put delete options]
       end
     end
