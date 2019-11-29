@@ -5,7 +5,7 @@ import { fetchBlog } from '../../actions';
 import BlogNav from './nav';
 import './blog.css';
 
-export default function Blog({ match: { params: { slug } } }) {
+export default function Blog({ history, match: { params: { slug } } }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchBlog(slug));
@@ -18,7 +18,7 @@ export default function Blog({ match: { params: { slug } } }) {
     <div className="blog">
       <h3>{blog.title}</h3>
       <p>{blog.content}</p>
-      <BlogNav slug={slug} />
+      <BlogNav slug={slug} history={history} />
     </div>
   );
 }
