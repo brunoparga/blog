@@ -32,7 +32,7 @@ export default ({ history, match: { params: { slug } } }) => {
         form="edit-blog"
         initialValues={{ slug, title: blog.title, content: blog.content }}
       />
-      <Link to={`/${slug}`}>
+      <Link to={`/blog/${slug}`}>
         Back to &quot;
         {blog.title}
         &quot;

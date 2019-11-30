@@ -15,7 +15,7 @@ export default ({ history }) => {
   return (
     <div className="new-blog-form">
       <BlogForm onSubmit={submit} form="new-blog" />
-      <Link to="/">Back</Link>
+      <Link to="/">Home</Link>
     </div>
   );
 };

@@ -13,7 +13,7 @@ export default function () {
     const time = new Date(blog.updated_at).toLocaleString('pt-BR');
     return (
       <div key={`${blog.id}`} className="blog-card">
-        <Link to={`/${blog.slug}`} className="blog-card__title">
+        <Link to={`/blog/${blog.slug}`} className="blog-card__title">
           {blog.title}
         </Link>
         <span className="blog-card__details">
