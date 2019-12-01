@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import BlogForm from './form';
-import { updateBlog, fetchBlog } from '../../actions';
+import { updateBlog, fetchBlog } from '../../../actions';
 import './form.css'
 
 export default ({ history, match: { params: { slug } } }) => {

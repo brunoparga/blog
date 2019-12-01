@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import BlogForm from './form';
-import { createBlog } from '../../actions';
+import { createBlog } from '../../../actions';
 import './form.css'
 
 export default ({ history }) => {
