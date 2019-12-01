@@ -10,7 +10,7 @@ export default ({ history, match: { params: { slug } } }) => {
   const dispatch = useDispatch();
   const submit = (updatedBlogData) => {
     dispatch(updateBlog(updatedBlogData, () => {
-      history.push(`/${slug}`);
+      history.push(`/blog/${slug}`);
     }));
   };
 
