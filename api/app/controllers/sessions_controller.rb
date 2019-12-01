@@ -1,4 +1,6 @@
 class SessionsController < Devise::SessionsController
+  skip_before_action :authenticate_user!
+  
   wrap_parameters :user
   
   def create
