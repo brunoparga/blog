@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 
 import BlogForm from './form';
 import { createBlog } from '../../../actions';
-import './form.css'
+import '../../form.css';
 
 export default ({ history }) => {
   const dispatch = useDispatch();
-  const submit = (values) => {
-    dispatch(createBlog(values, () => {
+  const submit = (newBlogData) => {
+    dispatch(createBlog(newBlogData, () => {
       history.push('/');
     }));
   };
   return (
-    <div className="blog-form">
+    <div className="form">
       <BlogForm onSubmit={submit} form="new-blog" />
       <Link to="/">Home</Link>
     </div>

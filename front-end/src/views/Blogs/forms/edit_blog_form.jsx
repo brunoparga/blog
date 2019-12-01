@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 import BlogForm from './form';
 import { updateBlog, fetchBlog } from '../../../actions';
-import './form.css'
+import '../../form.css';
 
 export default ({ history, match: { params: { slug } } }) => {
   const dispatch = useDispatch();
-  const submit = (values) => {
-    dispatch(updateBlog(values, () => {
+  const submit = (updatedBlogData) => {
+    dispatch(updateBlog(updatedBlogData, () => {
       history.push(`/${slug}`);
     }));
   };
@@ -27,7 +27,7 @@ export default ({ history, match: { params: { slug } } }) => {
 
   const [blog] = blogs;
   return (
-    <div className="blog-form">
+    <div className="form">
       <BlogForm
         onSubmit={submit}
         form="edit-blog"
