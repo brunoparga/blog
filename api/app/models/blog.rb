@@ -1,4 +1,6 @@
-class Blog < ApplicationRecord
+# frozen_string_literal: true
+
+class Blog < ApplicationRecord # rubocop:todo Style/Documentation
   extend FriendlyId
   friendly_id :title, use: :slugged
 

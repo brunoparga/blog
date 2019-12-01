@@ -1,7 +1,9 @@
-class BlogsController < ApplicationController
+# frozen_string_literal: true
+
+class BlogsController < ApplicationController # rubocop:todo Style/Documentation
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_blog, except: %i[index create]
-  
+
   def index
     render json: Blog.order(updated_at: :desc)
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users,
              path: '',
@@ -7,8 +9,7 @@ Rails.application.routes.draw do
                registration: 'signup'
              },
              controllers: { sessions: 'sessions',
-                            registrations: 'registrations'
-             },
+                            registrations: 'registrations' },
              defaults: { format: :json }
 
   root to: 'blogs#index'

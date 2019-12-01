@@ -1,3 +1,6 @@
+# rubocop:todo Style/Documentation
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   respond_to :json
@@ -26,3 +29,4 @@ class ApplicationController < ActionController::API
     }, status: :bad_request
   end
 end
+# rubocop:enable Style/Documentation

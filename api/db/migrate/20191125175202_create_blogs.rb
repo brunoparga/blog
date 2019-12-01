@@ -1,3 +1,6 @@
+# rubocop:todo Style/Documentation
+# frozen_string_literal: true
+
 class CreateBlogs < ActiveRecord::Migration[6.0]
   def change
     create_table :blogs do |t|
@@ -8,3 +11,4 @@ class CreateBlogs < ActiveRecord::Migration[6.0]
     end
   end
 end
+# rubocop:enable Style/Documentation
