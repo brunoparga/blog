@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchBlog } from '../../actions';
-import BlogNav from './nav';
+import BlogNav from './blog-nav';
 import './blog.css';
 
 export default function Blog({ history, match: { params: { slug } } }) {

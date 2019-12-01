@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { deleteBlog } from '../../actions';
-import './nav.css';
+import './blog-nav.css';
 
 export default ({ slug, history }) => {
   const dispatch = useDispatch();

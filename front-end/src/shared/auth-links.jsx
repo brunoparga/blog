@@ -9,7 +9,13 @@ export default () => {
       <div className="navbar__links">
         {user.email}
         <strong>&nbsp;|&nbsp;</strong>
-        <Link className="navbar__link" to="Log out">Sign out</Link>
+        <button
+          type="button"
+          className="button-link navbar__link"
+          onClick={/* handleDelete */}
+        >
+          Sign out
+        </button>
       </div>
     );
   }
