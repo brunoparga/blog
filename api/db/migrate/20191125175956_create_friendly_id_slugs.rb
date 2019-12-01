@@ -2,13 +2,14 @@
 
 MIGRATION_CLASS =
   if ActiveRecord::VERSION::MAJOR >= 5
-    ActiveRecord::Migration["#{ActiveRecord::VERSION::MAJOR}.#{ActiveRecord::VERSION::MINOR}"]
+    version = "#{ActiveRecord::VERSION::MAJOR}.#{ActiveRecord::VERSION::MINOR}"
+    ActiveRecord::Migration[version]
   else
     ActiveRecord::Migration
   end
 
 class CreateFriendlyIdSlugs < MIGRATION_CLASS # rubocop:todo Style/Documentation
-  def change
+  def change # rubocop:disable Metrics/MethodLength
     create_table :friendly_id_slugs do |t|
       t.string   :slug,           null: false
       t.integer  :sluggable_id,   null: false
@@ -17,7 +18,12 @@ class CreateFriendlyIdSlugs < MIGRATION_CLASS # rubocop:todo Style/Documentation
       t.datetime :created_at
     end
     add_index :friendly_id_slugs, %i[sluggable_type sluggable_id]
-    add_index :friendly_id_slugs, %i[slug sluggable_type], length: { slug: 140, sluggable_type: 50 }
-    add_index :friendly_id_slugs, %i[slug sluggable_type scope], length: { slug: 70, sluggable_type: 50, scope: 70 }, unique: true
+    add_index :friendly_id_slugs,
+              %i[slug sluggable_type],
+              length: { slug: 140, sluggable_type: 50 }
+    add_index :friendly_id_slugs,
+              %i[slug sluggable_type scope],
+              length: { slug: 70, sluggable_type: 50, scope: 70 },
+              unique: true
   end
 end

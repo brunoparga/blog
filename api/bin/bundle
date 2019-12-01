@@ -24,18 +24,18 @@ m = Module.new do
   # rubocop:todo Metrics/PerceivedComplexity
   # rubocop:todo Metrics/MethodLength
   def cli_arg_version # rubocop:todo Metrics/CyclomaticComplexity
-    return unless invoked_as_script? # don't want to hijack other binstubs
-    return unless 'update'.start_with?(ARGV.first || ' ') # must be running `bundle update`
+    # don't want to hijack other binstubs
+    return unless invoked_as_script?
+    # must be running `bundle update`
+    return unless 'update'.start_with?(ARGV.first || ' ')
 
     bundler_version = nil
     update_index = nil
     ARGV.each_with_index do |a, i|
-      if update_index && update_index.succ == i && a =~ Gem::Version::ANCHORED_VERSION_PATTERN
-        bundler_version = a
-      end
-      unless a =~ /\A--bundler(?:[= ](#{Gem::Version::VERSION_PATTERN}))?\z/
-        next
-      end
+      pattern = Gem::Version::ANCHORED_VERSION_PATTERN
+      condition = update_index && update_index.succ == i && a =~ pattern
+      bundler_version = a if condition
+      next unless a =~ /\A--bundler(?:[= ](#{pattern}))?\z/
 
       bundler_version = Regexp.last_match(1) || '>= 0.a'
       update_index = i
@@ -65,9 +65,8 @@ m = Module.new do
     return unless File.file?(lockfile)
 
     lockfile_contents = File.read(lockfile)
-    unless lockfile_contents =~ /\n\nBUNDLED WITH\n\s{2,}(#{Gem::Version::VERSION_PATTERN})\n/
-      return
-    end
+    regexp = /\n\nBUNDLED WITH\n\s{2,}(#{Gem::Version::VERSION_PATTERN})\n/
+    return unless lockfile_contents =~ regexp
 
     Regexp.last_match(1)
   end
@@ -88,9 +87,9 @@ m = Module.new do
 
   # rubocop:todo Metrics/MethodLength
   def activate_bundler(bundler_version) # rubocop:todo Metrics/AbcSize
-    if Gem::Version.correct?(bundler_version) && Gem::Version.new(bundler_version).release < Gem::Version.new('2.0')
-      bundler_version = '< 2'
-    end
+    bundler_version = '< 2' if Gem::Version.correct?(bundler_version) &&
+                               Gem::Version.new(bundler_version)
+                                           .release < Gem::Version.new('2.0')
     gem_error = activation_error_handling do
       gem 'bundler', bundler_version
     end
@@ -99,11 +98,18 @@ m = Module.new do
     require_error = activation_error_handling do
       require 'bundler/version'
     end
-    if require_error.nil? && Gem::Requirement.new(bundler_version).satisfied_by?(Gem::Version.new(Bundler::VERSION))
-      return
-    end
+    return if require_error.nil? &&
+              Gem::Requirement.new(bundler_version)
+                              .satisfied_by?(Gem::Version.new(Bundler::VERSION))
 
-    warn "Activating bundler (#{bundler_version}) failed:\n#{gem_error.message}\n\nTo install the version of bundler this project requires, run `gem install bundler -v '#{bundler_version}'`"
+    warning = <<~WARNING
+      Activating bundler (#{bundler_version}) failed:
+      #{gem_error.message}
+
+      To install the version of bundler this project requires,
+      run `gem install bundler -v '#{bundler_version}'`
+    WARNING
+    warn warning
     exit 42
   end
   # rubocop:enable Metrics/MethodLength
