@@ -1,4 +1,4 @@
-import { SIGNUP, LOGIN } from '../action_types';
+import { SIGNUP, LOGIN, FETCH_USER } from '../action_types';
 import withBody from './with_body';
 import noBody from './no_body';
 
@@ -14,7 +14,10 @@ export const signUserUp = (data, callback) => (dispatch) => {
     },
     body: JSON.stringify(data),
   })
-    .then((res) => res.json())
+    .then((res) => {
+      localStorage.setItem('token', res.headers.get('Authorization'));
+      return res.json();
+    })
     .then((payload) => {
       callback();
       dispatch({ type: SIGNUP, payload });
@@ -29,11 +32,24 @@ export const logUserIn = (data, callback) => (dispatch) => {
     },
     body: JSON.stringify(data),
   })
-    .then((res) => res.json())
+    .then((res) => {
+      localStorage.setItem('token', res.headers.get('Authorization'));
+      return res.json();
+    })
     .then((payload) => {
       callback();
       dispatch({ type: LOGIN, payload });
     });
+};
+
+export const fetchUser = (token) => (dispatch) => {
+  fetch(`${API_URL}/user`, {
+    headers: {
+      Authorization: token,
+    },
+  })
+    .then((res) => res.json())
+    .then((payload) => dispatch({ type: FETCH_USER, payload }));
 };
 
 // Blog actions

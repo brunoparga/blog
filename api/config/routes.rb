@@ -10,7 +10,9 @@ Rails.application.routes.draw do
                             registrations: 'registrations'
              },
              defaults: { format: :json }
+
   root to: 'blogs#index'
+  get 'user', to: 'users#show'
   get 'blogs/', to: 'blogs#index'
   get 'blogs/:id', to: 'blogs#show'
   post 'blogs/', to: 'blogs#create'

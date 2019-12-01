@@ -9,7 +9,12 @@ export default (action) => (slug = '', callback = () => { }) => (dispatch) => {
   };
   const type = types[action];
   const method = (action === 'destroy' ? 'DELETE' : 'GET');
-  fetch(`${API_URL}/blogs/${slug}`, { method })
+  fetch(`${API_URL}/blogs/${slug}`, {
+    method,
+    headers: {
+      Authorization: localStorage.token,
+    },
+  })
     .then((res) => res.json())
     .then((payload) => {
       callback();

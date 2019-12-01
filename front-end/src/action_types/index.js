@@ -1,6 +1,7 @@
 // User actions
 export const SIGNUP = 'SIGNUP';
 export const LOGIN = 'LOGIN';
+export const FETCH_USER = 'FETCH_USER';
 
 // Blog actions
 export const FETCH_BLOGS = 'FETCH_BLOGS';

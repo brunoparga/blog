@@ -18,6 +18,7 @@ export default (create = true) => (data, callback) => (dispatch, getState) => {
   fetch(url, {
     method,
     headers: {
+      Authorization: localStorage.token,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
