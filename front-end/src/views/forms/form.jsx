@@ -12,6 +12,7 @@ const BlogForm = ({ handleSubmit }) => (
       <strong>Content&nbsp;</strong>
       <Field name="content" component="textarea" type="text" />
     </label>
+    <br />
     <button type="submit">Submit</button>
   </form>
 );

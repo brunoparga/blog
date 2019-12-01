@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import BlogForm from './form';
 import { updateBlog, fetchBlog } from '../../actions';
+import './form.css'
 
 export default ({ history, match: { params: { slug } } }) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default ({ history, match: { params: { slug } } }) => {
 
   const [blog] = blogs;
   return (
-    <div className="edit-blog-form">
+    <div className="blog-form">
       <BlogForm
         onSubmit={submit}
         form="edit-blog"
